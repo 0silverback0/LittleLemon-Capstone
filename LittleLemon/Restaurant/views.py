@@ -10,10 +10,7 @@ from rest_framework.response import Response
 def index(request):
     return render(request, 'index.html', {})
 
-# Create your views here.
-
 class MenuItemView(generics.ListCreateAPIView):
-    # permission_classes = [IsAuthenticated]
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
         
@@ -21,8 +18,6 @@ class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
 
-# @api_view()
-# @permission_classes([IsAuthenticated])
 class BookingViewSet(viewsets.ModelViewSet):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
@@ -30,6 +25,5 @@ class BookingViewSet(viewsets.ModelViewSet):
 
 @api_view()
 @permission_classes([IsAuthenticated])
-# @authentication_classes([TokenAuthentication])
 def msg(request):
     return Response({"message":"This view is protected"})
